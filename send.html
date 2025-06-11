@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WhatsApp Enquiry</title>
+  <script>
+    function sendEnquiry(event) {
+      event.preventDefault(); // Prevent form from submitting normally
+
+      // Get form values
+      const name = document.getElementById("name").value;
+      const message = document.getElementById("message").value;
+
+      // WhatsApp number (include country code, no '+' or '-' symbols)
+      const phoneNumber = "919876543210";
+
+      // Encode message
+      const whatsappMessage = encodeURIComponent(`Hi, I'm ${name}. ${message}`);
+
+      // Create WhatsApp URL
+      const whatsappURL = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+
+      // Open WhatsApp chat
+      window.open(whatsappURL, "_blank");
+    }
+  </script>
+</head>
+<body>
+
+  <form onsubmit="sendEnquiry(event)">
+    <label>Name:</label>
+    <input type="text" id="name" required><br><br>
+
+    <label>Message:</label>
+    <textarea id="message" required></textarea><br><br>
+
+    <button type="submit">Send Enquiry on WhatsApp</button>
+  </form>
+
+</body>
+</html>
